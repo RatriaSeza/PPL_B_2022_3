@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+html{
+  scroll-behavior: smooth;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+
+.navpro,
+.main-content {
+  display: inline-block;
+}
+
+.profile-img, .nama{
+  display: inline-block;
+}
+
+/* .card-nav{
+} */
+
+.profile-img {
+    align-items: center;
+  width: 92px;
+  height: 92px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 384px;
+  margin-bottom: 60px;
+}
+
+
+.main-content {
+  position: absolute;
+  width: 900px;
+  /* height: 850px; */
+
+  background: #ece8fb;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+.detail-semester{
+  display: inline-block;
+  /* position: absolute; */
+  color: #ece8fb;
+  width: 100px;
+  height: 50px;
+  background: #613fe5;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+.semester, .detail-semester{
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+.IRSlink {
+  display: inline-block;
+  /* position: absolute; */
+  color: #ece8fb;
+  width: 100px;
+  height: 150px;
+  background: #613fe5;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+.KHSlink {
+  display: inline-block;
+  /* position: absolute; */
+  color: #ece8fb;
+  width: 100px;
+  height: 150px;
+  background: #613fe5;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+.PKLlink {
+  display: inline-block;
+  /* position: absolute; */
+  color: #ece8fb;
+  width: 100px;
+  height: 150px;
+  background: #613fe5;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+.Skripsilink {
+  display: inline-block;
+  /* position: absolute; */
+  color: #ece8fb;
+  width: 100px;
+  height: 150px;
+  background: #613fe5;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+
+
+button {
+  border: none;
+  width: 119px;
+  height: 43px;
+  color: #ffffff;
+  background: #613fe5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 40.5px;
+}
