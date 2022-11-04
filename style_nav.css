@@ -1,0 +1,59 @@
+.left {
+	width: 30vw;
+	height: 100vh;
+	padding: 10vh;
+}
+
+.left .user {
+	color: #0e0e0e;
+}
+
+.left .user .username {
+	font-weight: 500;
+	font-size: 15px;
+}
+
+.left .user .status {
+	font-weight: 400;
+	font-size: 11px;
+}
+
+#avatar {
+	width: 75px;
+	height: 75px;
+}
+
+.sidenav {
+	margin-top: 20px;
+	font-weight: 500;
+	font-size: 17px;
+	color: #000000;
+}
+
+.sidenav img {
+	width: 22px;
+	height: 22px;
+	margin-right: 10px;
+	display: flex;
+}
+
+.sidenav a {
+	text-decoration: none;
+	opacity: 50%;
+	margin-left: 10px;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	padding: 20px;
+}
+
+a:hover {
+	color: #14b8a6;
+	opacity: 100%;
+}
+
+#navlist li{
+	padding: 10px 0;
+}
