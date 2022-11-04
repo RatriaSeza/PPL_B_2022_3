@@ -1,14 +1,26 @@
 <?php
-require('db/db_login.php');
+    require('db/db_login.php');
+    session_start();
+    $nim = $_SESSION['username'];
 
-if (isset($_POST['submit'])) {
-    $semester = $_POST['semester'];
-    $sksKum = $_POST['sksKum'];
-    $scanIRS = $_POST['scanIRS'];
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
+    }
 
-    $query = "INSERT INTO irs (semester_mhs, sks, berkas_irs) VALUES ('$semester','$sksKum', '$scanIRS')";
-    $query_run = mysqli_query($con, $query);
-}
+    if(isset($_GET['logout'])){
+        unset($email);
+        session_destroy();
+        header('location:login.php');
+    }
+
+    if (isset($_POST['submit'])) {
+        $semester = $_POST['semester'];
+        $sksKum = $_POST['sksKum'];
+        $scanIRS = $_POST['scanIRS'];
+
+        $query = "INSERT INTO irs (semester_mhs, sks, berkas_irs) VALUES ('$semester','$sksKum', '$scanIRS')";
+        $query_run = mysqli_query($con, $query);
+    }
 ?>
 
 <!DOCTYPE html>
