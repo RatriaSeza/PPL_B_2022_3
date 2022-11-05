@@ -59,7 +59,10 @@
                 </ul>
             </div>
         </div>
-        
+        <script>
+            document.getElementById('Edit').style.opacity = '2';
+            document.getElementById('Edit').style.color = '#4ade80';
+        </script>
         <div class="content-edit-profil card sky-blue-50 grow" style="padding:50px 70px; margin-top: 10vh; margin-bottom:10vh;">
             <div class="card-header mb-2" style="font-size: 30px; font-weight: 700;">Edit Profil</div>
             <div class="card-body">
@@ -230,9 +233,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js">
-        document.getElementById('Profil').style.opacity = '2';
-        document.getElementById('Profil').style.color = '#4ade80';
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
