@@ -1,16 +1,16 @@
 <?php
-    include('db/db_login.php');
+    include('../db/db_login.php');
     session_start();
     $nim = $_SESSION['username'];
 
     if (!isset($_SESSION['username'])) {
-        header('Location: login.php');
+        header('Location: ../login.php');
     }
 
     if(isset($_GET['logout'])){
         unset($email);
         session_destroy();
-        header('location:login.php');
+        header('location: ../login.php');
     }
 ?>
 
@@ -27,7 +27,7 @@
     <script src="https://kit.fontawesome.com/15d5872470.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
     <title>Dashboard Mahasiswa</title>
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="../css/style2.css">
 
     <title>Dashboard</title>
 </head>

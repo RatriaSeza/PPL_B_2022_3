@@ -1,5 +1,5 @@
 <?php
-require('db/db_login.php');
+require('../db/db_login.php');
 
 if (isset($_POST['submit'])) {
     $semAktif = $_POST['semAktif'];
@@ -23,8 +23,8 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHS</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="nav/style_nav.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../nav/style_nav.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/15d5872470.js" crossorigin="anonymous"></script>
     <style>

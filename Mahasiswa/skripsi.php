@@ -1,5 +1,5 @@
 <?php
-    require('db/db_login.php');
+    require('../db/db_login.php');
     if (isset($_POST['submit'])) {
         $nim = ($_POST['nim']);
         $status = ($_POST['status']);
@@ -19,9 +19,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skripsi</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="nav/style_nav.css" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../nav/style_nav.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/15d5872470.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <style>
         .upload-file {
@@ -63,12 +64,13 @@
             </div>
             <div class="sidenav card">
                 <ul id="navlist" class="divide-y divide-gray-500 grid">
-                    <li><a id="Profil" href=""><i class="fas fa-user"></i> Profil</a></li>
-                    <li><a id="IRS" href="#"><i class="fas fa-file-lines"></i> Data IRS</a></li>
-                    <li><a id="KHS" href="#"><i class="fas fa-file-lines"></i> Data KHS</a></li>
-                    <li><a id="PKL" href="#"><i class="fas fa-building"></i> Data PKL</a></li>
-                    <li><a id="Skripsi" href="#"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
-                    <li><a id="Logout" href="#"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
+                    <li><a id="Dashboard" href="DashboardMahasiswa.php"><i class="fas fa-house"></i> Dashboard</a></li>
+                    <li><a id="Profil" href="edit_profil.php"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a id="IRS" href="irs.php"><i class="fas fa-file-lines"></i> Data IRS</a></li>
+                    <li><a id="KHS" href="khs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
+                    <li><a id="PKL" href="pkl.php"><i class="fas fa-building"></i> Data PKL</a></li>
+                    <li><a id="Skripsi" href="skripsi.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
+                    <li><a id="Logout" href="logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
                 </ul>
             </div>
         </div>
