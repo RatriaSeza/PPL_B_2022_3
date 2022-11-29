@@ -6,9 +6,10 @@ if (!isset($_SESSION['username'])) {
 }
 
 $nim = $_SESSION['username'];
+$sem_mhs = $_GET['semester_mhs'];
 
 if (!isset($_POST['submit'])) {
-    $query = " SELECT * FROM irs WHERE nim_mhs=" . $nim . " ";
+    $query = " SELECT * FROM irs WHERE nim_mhs='$nim' AND semester_mhs='$sem_mhs'";
     $result = mysqli_query($con, $query);
     if (!$result) {
         die("Could not query the database: <br />" .mysqli_error($con));
@@ -25,7 +26,7 @@ else{
     $sks = htmlspecialchars($_POST['sks']);
 
     // Scan IRS
-    $scanIRS = upload($nim);
+    $scanIRS = upload($nim, $semester);
 
     //Query update
     if ($scanIRS == ''){
@@ -44,12 +45,12 @@ else{
     }
 }
 
-function upload($nim)
+function upload($nim, $semester)
 {
     $fileName = $_FILES['scanIRS']['name'];
     $fileTmp = $_FILES['scanIRS']['tmp_name'];
 
-    move_uploaded_file($fileTmp, 'file_irs/' . $nim . '_' . $fileName);
+    move_uploaded_file($fileTmp, 'file_irs/' . $nim . '_' . $semester . '_' . $fileName);
 
     return $fileName;
 }
@@ -63,7 +64,7 @@ function upload($nim)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IRS</title>
+    <title>Data IRS</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../nav/style_nav.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -112,7 +113,7 @@ function upload($nim)
                     <li><a id="Dashboard" href="DashboardMahasiswa.php"><i class="fas fa-house"></i> Dashboard</a></li>
                     <li><a id="Profil" href="edit_profil.php"><i class="fas fa-user"></i> Profil</a></li>
                     <li><a id="IRS" href="Data_IRS_mhs.php"><i class="fas fa-file-lines"></i> Data IRS</a></li>
-                    <li><a id="KHS" href="khs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
+                    <li><a id="KHS" href="Data_KHS_mhs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
                     <li><a id="PKL" href="pkl.php"><i class="fas fa-building"></i> Data PKL</a></li>
                     <li><a id="Skripsi" href="skripsi.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
                     <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
@@ -127,9 +128,9 @@ function upload($nim)
                 <form method="POST" name="fIRS" action="" class="grid dropzone" onsubmit="return validateForm()" enctype="multipart/form-data">
                     <div class="from-group mt-3 mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="">
-                            Semester Aktif
+                            Semester
                         </label>
-                        <input name="semester" readonly value="<?php if (isset($_GET['semester_mhs'])) echo (int)$_GET['semester_mhs']; ?>" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-100 focus:border-gray-500" type="number" placeholder="Masukkan Semester Aktif">
+                        <input name="semester" readonly value="<?php if (isset($_GET['semester_mhs'])) echo (int)$_GET['semester_mhs']; ?>" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-gray-100 focus:border-gray-500" type="number" placeholder="Masukkan Semester">
                     </div>
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="">
@@ -166,7 +167,7 @@ function upload($nim)
             var semester = document.forms["fIRS"]["semester"].value;
             var sks = document.forms["fIRS"]["sks"].value;
             // var IRS = document.getElementById("inIRS");
-            if (semester == "" || sks == '' || IRS.files.length === 0) {
+            if (semester == "" || sks == '') {
                 document.getElementById('ferror').style.display = "none";
                 setTimeout(displayFlex, 300)
                 return false;

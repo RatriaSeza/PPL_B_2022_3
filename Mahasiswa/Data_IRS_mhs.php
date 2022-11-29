@@ -7,12 +7,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 $nim = $_SESSION['username'];
-
-// Get sem aktif from tabel Mahasiswa
-$query = "SELECT * FROM mahasiswa WHERE nim=$nim";
-$query_run = mysqli_query($con, $query);
-$data_mhs = mysqli_fetch_assoc($query_run);
-$sem_aktif = $data_mhs['sem_aktif'];
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +42,8 @@ $sem_aktif = $data_mhs['sem_aktif'];
             margin-top: 15px;
             font-size: 16px;
         }
+
+        table tr:nth-child(2n) {background: #F3F4F6;}
     </style>
 </head>
 
@@ -71,7 +67,7 @@ $sem_aktif = $data_mhs['sem_aktif'];
                     <li><a id="Dashboard" href="DashboardMahasiswa.php"><i class="fas fa-house"></i> Dashboard</a></li>
                     <li><a id="Profil" href="edit_profil.php"><i class="fas fa-user"></i> Profil</a></li>
                     <li><a id="IRS" href="Data_IRS_mhs.php"><i class="fas fa-file-lines"></i> Data IRS</a></li>
-                    <li><a id="KHS" href="khs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
+                    <li><a id="KHS" href="Data_KHS_mhs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
                     <li><a id="PKL" href="pkl.php"><i class="fas fa-building"></i> Data PKL</a></li>
                     <li><a id="Skripsi" href="skripsi.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
                     <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
@@ -94,9 +90,6 @@ $sem_aktif = $data_mhs['sem_aktif'];
                         </tr>
                     </thead>
                     <tbody>
-                        <script>
-                            const sem = [];
-                        </script>
                         <?php
                         $semester_count = 1;
                         $query = "SELECT * FROM irs WHERE nim_mhs=$nim ORDER BY semester_mhs";
@@ -137,10 +130,18 @@ $sem_aktif = $data_mhs['sem_aktif'];
                     </tbody>
                 </table>
             </div><br>
-            <div class="justify-self-end">
-                <a href="add_irs.php">
-                    <button class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">+ Add</button>
-                </a>
+            <div class="flex justify-between">
+                <div id="keterangan" class="text-xl">
+                    <span class="text-base font-semibold text-gray-600">Keterangan:</span><br>
+                    <i class="fa-solid fa-square-check text-green-500"></i><span class="text-base font-semibold text-gray-600"> Sudah Upload</span>
+                    <br>
+                    <i class="fa-solid fa-square-xmark text-red-500"></i><span class="text-base font-semibold text-gray-600"> Belum Upload</span>
+                </div>
+                <div class="grid mt-2">
+                    <a href="add_irs.php" class="justify-self-end" >
+                        <button class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">+ Add</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
