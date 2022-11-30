@@ -113,7 +113,7 @@ $result2 = $db->query($blm20);
                     <li><a id="KHS" href="khs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
                     <li><a id="PKL" href="pkl.php"><i class="fas fa-building"></i> Data PKL</a></li>
                     <li><a id="Skripsi" href="skripsi.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
-                    <li><a id="../Logout" href="logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
+                    <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
                 </ul>
             </div>
         </div>
