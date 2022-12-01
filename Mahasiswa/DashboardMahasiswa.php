@@ -49,7 +49,7 @@
                         <span style="font-size: 12px;"><?php echo $fetch['nim']; ?></span>
                     </p>
                     <p class="status">
-                        Mahasiswa <?php echo $fetch['status_kuliah']; ?> Departemen Informatika Fakultas Sains dan Matematika
+                        Mahasiswa <?php echo $fetch['status_kuliah']; ?><br> Departemen Informatika <br> Fakultas Sains dan Matematika
                     </p>
                 </div>
              </div>
@@ -118,14 +118,13 @@
                                                 <div class="p-6 w-36">
                                                     <h5 class="text-gray-900 text-xl font-medium mb-7">IPk</h5>
                                                         <?php
-                                                            $select = mysqli_query($con, "SELECT * FROM khs WHERE nim_mhs = '$nim'") or die('query failed');
-                                                            if(mysqli_num_rows($select) > 0){
-                                                                $fetch = mysqli_fetch_assoc($select);
+                                                            $query = "SELECT AVG(ip_semester) FROM khs WHERE nim_mhs=$nim";
+                                                            $query_run = mysqli_query($con, $query);
+                                                            while($row = mysqli_fetch_assoc($query_run)){
+                                                                echo round($row['AVG(ip_semester)'],2);
                                                             }
                                                         ?>
-                                                        <p class="text-gray-700 text-base mb-2">
-                                                            <?php echo $fetch['ip_kumulatif']; ?>
-                                                        </p>
+                                                    <p class="text-gray-700 text-base mb-2">
                                                 </div>
                                                 <div class="py-3 px-6 border-t border-gray-300 text-gray-600"></div>
                                             </div>
@@ -134,6 +133,12 @@
                                             <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center">
                                                 <div class="p-6 w-36">
                                                     <h5 class="text-gray-900 text-xl font-medium mb-7">SKSk</h5>
+                                                    <?php
+                                                        $select = mysqli_query($con, "SELECT * FROM khs WHERE nim_mhs = '$nim'") or die('query failed');
+                                                        if(mysqli_num_rows($select) > 0){
+                                                            $fetch = mysqli_fetch_assoc($select);
+                                                        }
+                                                    ?>
                                                     <p class="text-gray-700 text-base mb-2">
                                                         <?php echo $fetch['sks_semester']; ?>
                                                     </p>
@@ -146,8 +151,8 @@
                       </div>
                       <div class="py-2 px-1 border-b border-gray-300 mb-8 mt-5 ml-5">Entry Akademik</div>
                             <div class="flexbox-container cont2 ml-5">
-                                <a href="irs.php"><button type="button" class="inline-block px-1 py-10 bg-indigo-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-40 pb-14">Entry IRS</button></a>
-                                <a href="khs.php"><button type="button" class="inline-block px-10 py-10 bg-indigo-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-40 pb-14">Entry KHS</button></a>
+                                <a href="add_irs.php"><button type="button" class="inline-block px-1 py-10 bg-indigo-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-40 pb-14">Entry IRS</button></a>
+                                <a href="add_khs.php"><button type="button" class="inline-block px-10 py-10 bg-indigo-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-40 pb-14">Entry KHS</button></a>
                                 <a href="skripsi.php"><button type="button" class="inline px-10 py-10 bg-indigo-600 text-white font-medium text-sm mb-2 leading-5 text-center uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-40 pb-14">Entry Skripsi</button></a>
                                 <a href="pkl.php"><button type="button" class="inline-block px-10 py-10 bg-indigo-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-40 pb-14">Entry PKL</button></a>
                       </div>
