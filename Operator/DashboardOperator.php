@@ -1,5 +1,5 @@
 <?php
-require_once("db/db_login2.php");
+require_once("../db/db_login2.php");
 require_once("BEDashboardOP.php");
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ require_once("BEDashboardOP.php");
   <script src="https://kit.fontawesome.com/15d5872470.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
   <title>Dashboard Operator</title>
-  <link rel="stylesheet" href="css/style2.css">
+  <link rel="stylesheet" href="../css/style2.css">
 
   <title>PPL</title>
 </head>
