@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     header('Location: ../login.php');
 }
 
-$nim = $_SESSION['username'];
+$nim = $_SESSION['username']; 
 
 if (isset($_POST['submit'])) {
     $semester = htmlspecialchars($_POST['semester']);

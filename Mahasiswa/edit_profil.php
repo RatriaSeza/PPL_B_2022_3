@@ -1,21 +1,16 @@
 <?php
-    include('../db/db_login.php');
-    session_start();
-    $nim = $_SESSION['username'];
+include('../db/db_login.php');
+session_start();
+$nim = $_SESSION['username'];
 
-    if (!isset($_SESSION['username'])) {
-        header('Location: ../login.php');
-    }
-
-    if(isset($_GET['logout'])){
-        unset($email);
-        session_destroy();
-        header('location: ../login.php');
-    }
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,17 +21,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/15d5872470.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="container flex">
         <div class="left sticky top-0">
             <div class="user flex card">
                 <?php
-                    $select = mysqli_query($con, "SELECT * FROM mahasiswa WHERE nim = '$nim'") or die('query failed');
-                    if(mysqli_num_rows($select) > 0){
-                        $fetch = mysqli_fetch_assoc($select);
-                    }
+                $select = mysqli_query($con, "SELECT * FROM mahasiswa WHERE nim = '$nim'") or die('query failed');
+                if (mysqli_num_rows($select) > 0) {
+                    $fetch = mysqli_fetch_assoc($select);
+                }
                 ?>
-                <img class="object-contain hover:scale-125 " id="avatar" src="img/olix.png" alt="" />
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
                         <b><?php echo $fetch['nama']; ?></b><br>
@@ -55,13 +51,13 @@
                     <li><a id="KHS" href="Data_KHS_mhs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
                     <li><a id="PKL" href="pkl.php"><i class="fas fa-building"></i> Data PKL</a></li>
                     <li><a id="Skripsi" href="skripsi.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
-                    <li><a id="Logout" href="logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
+                    <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
                 </ul>
             </div>
         </div>
         <script>
-            document.getElementById('Edit').style.opacity = '2';
-            document.getElementById('Edit').style.color = '#4ade80';
+            document.getElementById('Profil').style.opacity = '2';
+            document.getElementById('Profil').style.color = '#4ade80';
         </script>
         <div class="content-edit-profil card sky-blue-50 grow" style="padding:50px 70px; margin-top: 10vh; margin-bottom:10vh;">
             <div class="card-header mb-2" style="font-size: 30px; font-weight: 700;">Edit Profil</div>
@@ -87,7 +83,7 @@
                 ?>
                         <div class="alert alert-success">Data berhasil disimpan</div>
                     <?php else : ?>
-                        <div class="alert alert-error">Data gagal disimpan <?php echo $con->error?></div>
+                        <div class="alert alert-error">Data gagal disimpan <?php echo $con->error ?></div>
                         }
                 <?php
                     endif;
@@ -105,7 +101,7 @@
                     </div>
 
                     <div class="form-group mb-7">
-                        <label class="block tracking-wide text-sm font-bold mb-2" for="angkatan" >Angkatan</label>
+                        <label class="block tracking-wide text-sm font-bold mb-2" for="angkatan">Angkatan</label>
                         <input name="angkatan" id="angkatan" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['angkatan']; ?>" disabled>
                         <!-- <div class="relative">
                             <select name="angkatan" id="angkatan" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
@@ -235,4 +231,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

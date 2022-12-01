@@ -1,19 +1,20 @@
 <?php
-    require('../db/db_login.php');
-    if (isset($_POST['submit'])) {
-        $nim = ($_POST['nim']);
-        $status = ($_POST['status']);
-        $nilai = ($_POST['nilai']);
-        $sks = ($_POST['sks']);
-        $tanggal = ($_POST['tanggal']);
-        $scanSkripsi = ($_POST['scanSkripsi']);
-        $query = "INSERT INTO skripsi (nim_mhs, status_skripsi, nilai_skripsi, sks_kumulatif, tanggal_sidang, ba_skripsi) VALUES ('$nim', '$status', '$nilai', '$sks', '$tanggal', '$scanSkripsi')";
-        $query_run = mysqli_query($con, $query);
-    }
+require('../db/db_login.php');
+if (isset($_POST['submit'])) {
+    $nim = ($_POST['nim']);
+    $status = ($_POST['status']);
+    $nilai = ($_POST['nilai']);
+    $sks = ($_POST['sks']);
+    $tanggal = ($_POST['tanggal']);
+    $scanSkripsi = ($_POST['scanSkripsi']);
+    $query = "INSERT INTO skripsi (nim_mhs, status_skripsi, nilai_skripsi, sks_kumulatif, tanggal_sidang, ba_skripsi) VALUES ('$nim', '$status', '$nilai', '$sks', '$tanggal', '$scanSkripsi')";
+    $query_run = mysqli_query($con, $query);
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,13 +53,20 @@
     <div class="container flex">
         <div class="left sticky top-0">
             <div class="user flex card">
-                <img class="shrink" id="avatar" src="img/olix.png" alt="" />
+                <?php
+                $select = mysqli_query($con, "SELECT * FROM mahasiswa WHERE nim = '$nim'") or die('query failed');
+                if (mysqli_num_rows($select) > 0) {
+                    $fetch = mysqli_fetch_assoc($select);
+                }
+                ?>
+                <img class="object-contain " id="avatar" src="img/olix.png" alt="" />
                 <div class="flex-row ml-5">
-                    <p class="username">Olivia Rodrigo
-                        <span style="font-size: 12px;">24060120130052</span>
+                    <p class="username">
+                        <b><?php echo $fetch['nama']; ?></b><br>
+                        <span style="font-size: 12px;"><?php echo $fetch['nim']; ?></span>
                     </p>
                     <p class="status">
-                        Mahasiswa Aktif Departemen Informatika Fakultas Sains dan Matematika
+                        Mahasiswa <?php echo $fetch['status_kuliah']; ?> Departemen Informatika Fakultas Sains dan Matematika
                     </p>
                 </div>
             </div>
@@ -70,7 +78,7 @@
                     <li><a id="KHS" href="Data_KHS_mhs.php"><i class="fas fa-file-lines"></i> Data KHS</a></li>
                     <li><a id="PKL" href="pkl.php"><i class="fas fa-building"></i> Data PKL</a></li>
                     <li><a id="Skripsi" href="skripsi.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
-                    <li><a id="Logout" href="logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
+                    <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
                 </ul>
             </div>
         </div>
@@ -130,22 +138,22 @@
                         <input name="tanggal" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="date" placeholder="">
                     </div>
                     <div class="form-group mt-3 ">
-                    <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="">
-                        Upload Skripsi
-                    </label>
-                    <div class="upload-skripsi ">
-                        <div class="mb-7 upload-file bg-gray-200">
-                            <input class="file-input" id="inSkripsi" type="file" accept=".pdf" name="scanSkripsi" style="display:none;">
-                            <span id="icon-up"><i class="fas fa-cloud-upload-alt text-gray-700"></i></span>
-                            <span id="uploaded-file" class="block tracking-wide text-gray-700 text-sm font-bold opacity-75">Upload Skripsi</span>
+                        <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="">
+                            Upload Skripsi
+                        </label>
+                        <div class="upload-skripsi ">
+                            <div class="mb-7 upload-file bg-gray-200">
+                                <input class="file-input" id="inSkripsi" type="file" accept=".pdf" name="scanSkripsi" style="display:none;">
+                                <span id="icon-up"><i class="fas fa-cloud-upload-alt text-gray-700"></i></span>
+                                <span id="uploaded-file" class="block tracking-wide text-gray-700 text-sm font-bold opacity-75">Upload Skripsi</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex justify-between text-gray-700 shadow-inner rounded p-3 bg-red-400 mb-7" id="ferror" style="display: none;">
-                        <p class="self-center text-slate-100"><strong><i class="fas fa-info-circle"></i> Mohon untuk mengisi semua data!</strong></p>
-                    </div>
-                    <div class="justify-self-end">
-                        <button class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="submit" name="submit">Save</button>
-                    </div>
+                        <div class="flex justify-between text-gray-700 shadow-inner rounded p-3 bg-red-400 mb-7" id="ferror" style="display: none;">
+                            <p class="self-center text-slate-100"><strong><i class="fas fa-info-circle"></i> Mohon untuk mengisi semua data!</strong></p>
+                        </div>
+                        <div class="justify-self-end">
+                            <button class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="submit" name="submit">Save</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -186,4 +194,5 @@
         })
     </script>
 </body>
+
 </html>
