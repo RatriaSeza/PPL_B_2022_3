@@ -64,7 +64,7 @@ if (!isset($_SESSION['username'])) {
             <div class="card-body">
                 <?php
                 if (isset($_POST['submit'])) {
-                    $nama = $_POST['nama'];
+                    $nama = $_POST['nama_mhs'];
                     $NIM = $_POST['NIM'];
                     $angkatan = $_POST['angkatan'];
                     $status_mhs = $_POST['status_mhs'];
@@ -76,8 +76,8 @@ if (!isset($_SESSION['username'])) {
                     $email = $_POST['email'];
                     $nohp = $_POST['nohp'];
 
-                    $query("INSERT INTO mahasiswa (nama, NIM, angkatan, status_mhs, jalur_masuk, jenis_kelamin, alamat, id_provinsi, id_kabupaten, email, nohp) 
-                            VALUES('$nama', '$NIM', '$angkatan', '$status_mhs', '$jalur_masuk', '$jenis_kelamin', '$alamat', '$provinsi', '$kabupaten', '$email', '$nohp')");
+                    $query("INSERT INTO mahasiswa (nama_mhs, NIM, angkatan, status_mhs, jalur_masuk, jenis_kelamin, alamat, id_provinsi, id_kabupaten, email, nohp) 
+                            VALUES('$nama_mhs', '$NIM', '$angkatan', '$status_mhs', '$jalur_masuk', '$jenis_kelamin', '$alamat', '$provinsi', '$kabupaten', '$email', '$nohp')");
 
                     if ($result) :
                 ?>
@@ -91,8 +91,8 @@ if (!isset($_SESSION['username'])) {
                 ?>
                 <form method="POST" onsubmit="return submitForm()" name="form" class="grid">
                     <div class="form-group mb-7">
-                        <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="nama">Nama Lengkap</label>
-                        <input name="nama" id="nama" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['nama_mhs']; ?>" disabled>
+                        <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="nama_mhs">Nama Lengkap</label>
+                        <input name="nama_mhs" id="nama_mhs" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['nama_mhs']; ?>" disabled>
                     </div>
 
                     <div class="form-group mb-7">
@@ -183,7 +183,7 @@ if (!isset($_SESSION['username'])) {
                             <select name="provinsi" id="provinsi" class="form-control block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
                                 <option value="<?php if (isset($provinsi)) {echo $provinsi;}?>">Pilih Provinsi</option>
                                 <?php
-                                $result = $con->query("SELECT * FROM provinsi");
+                                $result = $con->query("SELECT * FROM provinsi ORDER BY nama");
 
                                 while ($data = $result->fetch_object()) :
                                 ?>

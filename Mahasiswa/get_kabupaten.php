@@ -1,8 +1,9 @@
 <?php
-    require_once('db/db_login.php');
+    require_once('../db/db_login.php');
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
+        echo $id;
         $result = $con->query("SELECT * FROM kabupaten WHERE id_provinsi='$id'");
         ?>
         <option value="0">Pilih Kabupaten/Kota</option>

@@ -1,7 +1,7 @@
-var nama = document.forms.form.nama
-var nim = document.forms.form.nim
+var nama_mhs = document.forms.form.nama_mhs
+var NIM = document.forms.form.NIM
 var angkatan = document.forms.form.angkatan
-var status_kuliah = document.forms.form.status_kuliah
+var status_mhs = document.forms.form.status_mhs
 var jalur_masuk = document.forms.form.jalur_masuk
 var jenis_kelamin = document.forms.form.jenis_kelamin
 var alamat = document.forms.form.alamat
@@ -15,12 +15,12 @@ function submitForm() {
     var valid = true
 
     if (nama.value == '') {
-        error('nama', 'Nama harus diisi')
+        error('nama_mhs', 'Nama harus diisi')
         valid = false
     }
 
     if (nim.value == '') {
-        error('nim', 'NIM harus diisi')
+        error('NIM', 'NIM harus diisi')
         valid = false
     }
 
@@ -30,7 +30,7 @@ function submitForm() {
     }
     
     if (status_kuliah.value == '') {
-        error('status_kuliah', 'Status Kuliah harus diisi')
+        error('status_mhs', 'Status Kuliah harus diisi')
         valid = false
     }
     
@@ -118,5 +118,7 @@ provinsi.onchange = function () {
     
     xhr.send()
 }
+
+console.log(provinsi);
 
 resetError()

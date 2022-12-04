@@ -1,5 +1,5 @@
 <?php
-    require_once('db/db_login.php');
+    require_once('../db/db_login.php');
 
     if (! isset($_GET['email'])) {
         echo false;
