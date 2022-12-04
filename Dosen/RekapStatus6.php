@@ -1,3 +1,11 @@
+<?php
+session_start();
+$nip = $_SESSION['username'];
+
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -71,16 +79,26 @@
   <div class="row-span-2">
   <div class="left">
             <div class="user flex card">
-                <img id="avatar" src="img/olix.png" alt="" />
-                <div class="flex-row ml-5">
-                    <p class="username">Olivia Rodrigo</p>
-                    <p class="status">
-                        Dosen
-                        <br> 
-                        Fakultas Sains dan Matematika
-                    </p>
+                    <?php
+                    $select = mysqli_query($conn, "SELECT * FROM dosen WHERE nip_dosen = '$nip'") or die('query failed');
+                    if (mysqli_num_rows($select) > 0) {
+                        $fetch = mysqli_fetch_assoc($select);
+                    }
+                    ?>
+                    <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
+                    <div class="flex-row ml-5">
+                        <p class="username">
+                            <b><?php echo $fetch['nama_dosen']; ?></b><br>
+                            <span style="font-size: 12px;"><?php echo $fetch['nip_dosen']; ?></span>
+                        </p>
+                        <p class="status">
+                            Dosen
+                            <br>
+                            Fakultas Sains dan Matematika
+                        </p>
+                    </div>
                 </div>
-            </div>
+
             <div class="sidenav card">
                 <ul id="navlist" class="divide-y divide-gray-500 grid">
                     <li><a id="Dashboard" href="dashdepartemen5.php"><i class="fas fa-house"></i> Dashboard</a></li>
