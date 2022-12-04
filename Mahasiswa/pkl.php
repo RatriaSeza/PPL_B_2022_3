@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
                     $fetch = mysqli_fetch_assoc($select);
                 }
                 ?>
-                <img class="object-contain " id="avatar" src="img/olix.png" alt="" />
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
                         <b><?php echo $fetch['nama']; ?></b><br>
@@ -154,7 +154,7 @@ if (isset($_POST['submit'])) {
             var status = document.forms["fPKL"]["status"].value;
             var nilai = document.forms["fPKL"]["nilai"].value;
             var pkl = document.getElementById("inPKL");
-            if ( status == '' || nilai == '' || pkl.files.length === 0) {
+            if (status == '' || nilai == '' || pkl.files.length === 0) {
                 document.getElementById('ferror').style.display = "flex";
                 return false;
             }

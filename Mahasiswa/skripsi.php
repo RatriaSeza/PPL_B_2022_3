@@ -1,5 +1,14 @@
 <?php
 require('../db/db_login.php');
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
+
+$nim = $_SESSION['username'];
+
 if (isset($_POST['submit'])) {
     $nim = ($_POST['nim']);
     $status = ($_POST['status']);
@@ -59,7 +68,7 @@ if (isset($_POST['submit'])) {
                     $fetch = mysqli_fetch_assoc($select);
                 }
                 ?>
-                <img class="object-contain " id="avatar" src="img/olix.png" alt="" />
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
                         <b><?php echo $fetch['nama']; ?></b><br>

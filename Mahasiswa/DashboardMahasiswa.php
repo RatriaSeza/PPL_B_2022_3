@@ -36,14 +36,14 @@ if (!isset($_SESSION['username'])) {
                     $fetch = mysqli_fetch_assoc($select);
                 }
                 ?>
-                <img class="object-contain hover:scale-125 " id="avatar" src="img/olix.png" alt="" />
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
                         <b><?php echo $fetch['nama']; ?></b><br>
                         <span style="font-size: 12px;"><?php echo $fetch['nim']; ?></span>
                     </p>
                     <p class="status">
-                        Mahasiswa <?php echo $fetch['status_kuliah']; ?><br> Departemen Informatika <br> Fakultas Sains dan Matematika
+                        Mahasiswa <?php echo $fetch['status_kuliah']; ?> Departemen Informatika Fakultas Sains dan Matematika
                     </p>
                 </div>
             </div>

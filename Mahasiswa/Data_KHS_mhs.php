@@ -59,7 +59,7 @@ $nim = $_SESSION['username'];
                     $fetch = mysqli_fetch_assoc($select);
                 }
                 ?>
-                <img class="object-contain " id="avatar" src="img/olix.png" alt="" />
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
                         <b><?php echo $fetch['nama']; ?></b><br>
