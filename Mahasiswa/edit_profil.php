@@ -181,12 +181,13 @@ if (!isset($_SESSION['username'])) {
                         <label class="block tracking-wide text-sm font-bold mb-2" for="provinsi">Provinsi</label>
                         <div class="relative">
                             <select name="provinsi" id="provinsi" class="form-control block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option value="0">Pilih Provinsi</option>
+                                <option value="<?php if (isset($provinsi)) {echo $provinsi;}?>">Pilih Provinsi</option>
                                 <?php
-                                $result = $con->query("SELECT * FROM provinsi ORDER BY nama");
+                                $result = $con->query("SELECT * FROM provinsi");
+
                                 while ($data = $result->fetch_object()) :
                                 ?>
-                                    <option value="<?php echo $data->id ?>"><?php echo $data->nama_mhs ?></option>
+                                    <option value="<?php echo $data->id ?>"><?php echo $data->nama ?></option>
                                 <?php endwhile ?>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -201,7 +202,7 @@ if (!isset($_SESSION['username'])) {
                         <label class="block tracking-wide text-sm font-bold mb-2" for="kabupaten">Kabupaten/Kota</label>
                         <div class="relative">
                             <select name="kabupaten" id="kabupaten" class="form-control block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option value="all">Pilih Kabupaten/Kota</option>
+                                <option value="<?php if (isset($kabupaten)) {echo $kabupaten;}?>">Pilih Kabupaten/Kota</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
