@@ -39,11 +39,11 @@ if (!isset($_SESSION['username'])) {
                 <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
-                        <b><?php echo $fetch['nama']; ?></b><br>
-                        <span style="font-size: 12px;"><?php echo $fetch['nim']; ?></span>
+                        <b><?php echo $fetch['nama_mhs']; ?></b><br>
+                        <span style="font-size: 12px;"><?php echo $fetch['NIM']; ?></span>
                     </p>
                     <p class="status">
-                        Mahasiswa <?php echo $fetch['status_kuliah']; ?> Departemen Informatika Fakultas Sains dan Matematika
+                        Mahasiswa <?php echo $fetch['status_mhs']; ?> Departemen Informatika Fakultas Sains dan Matematika
                     </p>
                 </div>
             </div>
@@ -96,7 +96,7 @@ if (!isset($_SESSION['username'])) {
                                             }
                                             ?>
                                             <p class="text-gray-700 text-base mb-2">
-                                                <?php echo $fetch['status_kuliah']; ?>
+                                                <?php echo $fetch['status_mhs']; ?>
                                             </p>
                                         </div>
                                         <div class="py-3 px-6 border-t border-gray-300 text-gray-600"></div>
