@@ -4,7 +4,7 @@ require_once('db/db_login.php');
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
-    $password = ($_POST['password']);
+    $password = $_POST['password'];
 
     if ($password == '' || $username == '') {
         $error = '<div class="alert alert-danger">Masukkan username dan Password!</div>';
@@ -20,13 +20,13 @@ if (isset($_POST['submit'])) {
                 $role = $row["role"];
                 $_SESSION['username'] = $username;
                 if ($role == 'mahasiswa') {
-                    header('Location: DashboardMahasiswa.php');
+                    header('Location: Mahasiswa/DashboardMahasiswa.php');
                 } else if ($role == 'dosen') {
-                    header('Location: dashdosen6.php');
+                    header('Location: Dosen/dashdosen6.php');
                 } else if ($role == 'operator') {
-                    header('Location: DashboardOperator.php');
+                    header('Location: Operator/DashboardOperator.php');
                 } else if ($role == 'departemen') {
-                    header('Location: dashdepartemen5.php');
+                    header('Location: Departemen/dashdepartemen5.php');
                 }
                 $_SESSION['role'] = $role;
                 exit;
@@ -157,26 +157,28 @@ if (isset($_POST['submit'])) {
 
         <!--Content before waves-->
         <div class="inner-header flex">
-            <div class="grid mx-96 flex" style="margin-top: 20vh;">
-                <form class="mx-auto flex flex-col grid card w-96 p-10 bg-gray-50" method="post">
-                    <div class="text-center text-5xl font-medium text-gray-500 mb-7">
+            <div class="grid mx-96 flex font-medium" style="margin-top: 20vh;">
+                <form class="mx-auto flex-col grid card w-96 px-10 py-8 bg-slate-700 shadow-md rounded-md" method="post">
+                    <div class="text-center text-5xl font-medium text-gray-300 mb-5">
                         Login
                     </div>
-                    <label class="block text-gray-500 text-xl font-bold mb-0 pr-4" for="inline-full-name">
+                    <label class="block text-gray-300 text-xl font-bold mb-0 pr-4" for="Username">
                         Username
                     </label>
-                    <div class="mb-5">
-                        <input name="username" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" placeholder="NIM / NIP / Email">
+                    <div class="mb-3">
+                        <input name="username" class="bg-gray-300 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200  focus:border-gray-300" id="inline-full-name" type="text" placeholder="NIM / NIP / Email">
                     </div>
-                    <label class="block text-gray-500 text-xl font-bold mb-0 pr-4" for="inline-password">
+                    <label class="block text-gray-300 text-xl font-bold mb-0 pr-4" for="password">
                         Password
                     </label>
-                    <div class="mb-5">
-                        <input name="password" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="password">
+                    <div class="mb-4">
+                        <input name="password" class="bg-gray-300 appearance-none border-2 border-gray-400 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-200 focus:border-gray-300" id="inline-password" type="password" placeholder="***********">
                     </div>
-                    <div>
-                        <?php if (isset($error)) echo $error ?>
-                    </div>
+                    <?php
+                        if (isset($error)) {
+                            echo '<div class="text-gray-100 font-medium shadow-inner rounded p-3 bg-red-500 mb-4">' . $error . '</div>';
+                        }
+                        ?>
                     <div class="justify-self-end">
                         <button name="submit" class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                             Login
