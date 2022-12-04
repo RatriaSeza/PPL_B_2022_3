@@ -35,13 +35,13 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                $pkl17 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='17';";
+                $pkl17 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='2017';";
                 $result17 = $conn->query($pkl17);
-                $pkl18 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='18';";
+                $pkl18 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='2018';";
                 $result18 = $conn->query($pkl18);
-                $pkl19 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='19';";
+                $pkl19 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='2019';";
                 $result19 = $conn->query($pkl19);
-                $pkl20 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='20';";
+                $pkl20 = "SELECT * FROM mahasiswa WHERE status_mhs='Aktif' AND angkatan='2020';";
                 $result20 = $conn->query($pkl20);
 
                 $count1=mysqli_num_rows($result17);
@@ -49,13 +49,13 @@
                 $count3=mysqli_num_rows($result19);
                 $count4=mysqli_num_rows($result20);
 
-                $blm17 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='17';";
+                $blm17 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='2017';";
                 $hasil17 = $conn->query($blm17);
-                $blm18 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='18';";
+                $blm18 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='2018';";
                 $hasil18 = $conn->query($blm18);
-                $blm19 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='19';";
+                $blm19 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='2019';";
                 $hasil19 = $conn->query($blm19);
-                $blm20 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='20';";
+                $blm20 = "SELECT * FROM mahasiswa WHERE status_mhs='Cuti' AND angkatan='2020';";
                 $hasil20 = $conn->query($blm20);
 
                 $hitung1=mysqli_num_rows($hasil17);
