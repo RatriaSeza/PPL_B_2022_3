@@ -60,13 +60,13 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                $skripsi17 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='17';";
+                $skripsi17 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='2017';";
                 $result17 = $conn->query($skripsi17);
-                $skripsi18 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='18';";
+                $skripsi18 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='2018';";
                 $result18 = $conn->query($skripsi18);
-                $skripsi19 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='19';";
+                $skripsi19 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='2019';";
                 $result19 = $conn->query($skripsi19);
-                $skripsi20 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='20';";
+                $skripsi20 = "SELECT * FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi = 'Sudah' AND mahasiswa.angkatan='2020';";
                 $result20 = $conn->query($skripsi20);
 
 
@@ -75,13 +75,13 @@
                 $count3=mysqli_num_rows($result19);
                 $count4=mysqli_num_rows($result20);
 
-                $blm17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='17';";
+                $blm17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='2017';";
                 $hasil17 = $conn->query($blm17);
-                $blm18 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='18';";
+                $blm18 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='2018';";
                 $hasil18 = $conn->query($blm18);
-                $blm19 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='19';";
+                $blm19 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='2019';";
                 $hasil19 = $conn->query($blm19);
-                $blm20 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='20';";
+                $blm20 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, skripsi.status_skripsi FROM mahasiswa INNER JOIN skripsi ON mahasiswa.NIM = skripsi.nim_mhs WHERE skripsi.status_skripsi='Belum' AND mahasiswa.angkatan='2020';";
                 $hasil20 = $conn->query($blm20);
 
                 $hitung1=mysqli_num_rows($hasil17);
