@@ -13,10 +13,9 @@ if (isset($_POST['submit'])) {
     $status = htmlspecialchars($_POST['status']);
     $nilai = htmlspecialchars($_POST['nilai']);
     $scanPKL = upload($nim);
-    
+
     $query = "INSERT INTO pkl (nim_mhs, status_pkl, nilai_pkl, ba_pkl) VALUES ('$nim', '$status', '$nilai', '$scanPKL')";
     $query_run = mysqli_query($con, $query);
-    
 }
 
 function upload($nim)
@@ -27,7 +26,6 @@ function upload($nim)
     move_uploaded_file($fileTmp, 'file_pkl/' . $nim . '_' . $fileName);
 
     return $fileName;
-
 }
 ?>
 
@@ -81,11 +79,11 @@ function upload($nim)
                 <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
-                        <b><?php echo $fetch['nama']; ?></b><br>
-                        <span style="font-size: 12px;"><?php echo $fetch['nim']; ?></span>
+                        <b><?php echo $fetch['nama_mhs']; ?></b><br>
+                        <span style="font-size: 12px;"><?php echo $fetch['NIM']; ?></span>
                     </p>
                     <p class="status">
-                        Mahasiswa <?php echo $fetch['status_kuliah']; ?> Departemen Informatika Fakultas Sains dan Matematika
+                        Mahasiswa <?php echo $fetch['status_mhs']; ?> Departemen Informatika Fakultas Sains dan Matematika
                     </p>
                 </div>
             </div>
@@ -172,11 +170,11 @@ function upload($nim)
                 return false;
             }
         }
-        
+
         function displayFlex() {
             document.getElementById('ferror').style.display = "flex";
         }
-        
+
         const formUp = document.querySelector(".upload-file"),
             fileInput = document.querySelector(".file-input")
 
