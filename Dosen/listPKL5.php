@@ -34,9 +34,9 @@ if ($db->connect_errno) {
     die ("Could not connect to the database : <br />". $db->connect_error);
 }
 
-$pkl17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='17';";
+$pkl17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='2017';";
 $result = $db->query($pkl17);
-$blm17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='17';";
+$blm17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='2017';";
 $result2 = $db->query($blm17);
 
 
@@ -57,36 +57,36 @@ function button1() {
     global $result;
     global $result2;
     require_once('db/db_login2.php');
-    $pkl17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='17';";
+    $pkl17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='2017';";
     $result = $db->query($pkl17);
-    $blm17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='17';";
+    $blm17 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='2017';";
     $result2 = $db->query($blm17);
 }
 function button2() {
     global $result;
     global $result2;
     require_once('db/db_login2.php');
-    $pkl18 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='18';";
+    $pkl18 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='2018';";
     $result = $db->query($pkl18);
-    $blm18 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='18';";
+    $blm18 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='2018';";
 $result2 = $db->query($blm18);
 }
 function button3() {
     global $result;
     global $result2;
     require_once('db/db_login2.php');
-    $pkl19 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='19';";
+    $pkl19 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='2019';";
     $result = $db->query($pkl19);
-    $blm19 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='19';";
+    $blm19 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='2019';";
 $result2 = $db->query($blm19);
 }
 function button4() {
     global $result;
     global $result2;
     require_once('db/db_login2.php');
-    $pkl20 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='20';";
+    $pkl20 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Sudah' AND mahasiswa.angkatan='2020';";
     $result = $db->query($pkl20);
-    $blm20 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='20';";
+    $blm20 = "SELECT mahasiswa.NIM, mahasiswa.nama_mhs, pkl.status_pkl, mahasiswa.angkatan, pkl.nilai_pkl FROM mahasiswa INNER JOIN pkl ON mahasiswa.NIM = pkl.nim_mhs WHERE pkl.status_pkl='Belum' AND mahasiswa.angkatan='2020';";
 $result2 = $db->query($blm20);
 }
 
