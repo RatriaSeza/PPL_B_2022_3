@@ -1,4 +1,11 @@
-<?php require_once("db/db_login2.php"); ?>
+<?php require_once("../db/db_login2.php");
+session_start();
+$nip = $_SESSION['username'];
+
+if (!isset($_SESSION['username'])) {
+    header('Location: ../login.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -12,39 +19,46 @@
     <script src="https://kit.fontawesome.com/15d5872470.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
     <title>Dashboard Mahasiswa</title>
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="../css/style2.css">
+    <link rel="stylesheet" href="../nav/style_nav.css" />
 
     <title>PPL</title>
 </head>
 
 <body>
-    <div class="container nt">
+    <div class="container nt flex">
         <div class="left sticky top-0">
             <div class="user flex card">
-                <img class="object-contain hover:scale-125 " id="avatar" src="img/olix.png" alt="" />
+                <?php
+                $select = mysqli_query($db, "SELECT * FROM dosen WHERE nip_dosen = '$nip'") or die('query failed');
+                if (mysqli_num_rows($select) > 0) {
+                    $fetch = mysqli_fetch_assoc($select);
+                }
+                ?>
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
-                        Olivia Rodrigo <br>
-                        <!-- <span style="font-size: 12px;">24060120130052</span> -->
+                        <b><?php echo $fetch['nama_dosen']; ?></b><br>
+                        <span style="font-size: 12px;"><?php echo $fetch['nip_dosen']; ?></span>
                     </p>
                     <p class="status">
-                        Dosen <br> Departemen Informatika <br> Fakultas Sains dan Matematika
+                        Dosen
+                        <br>
+                        Fakultas Sains dan Matematika
                     </p>
                 </div>
             </div>
             <div class="sidenav card">
                 <ul id="navlist" class="divide-y divide-gray-500 grid">
                     <li><a id="Dashboard" href="dashdosen6.php"><i class="fas fa-house"></i> Dashboard</a></li>
-                    <li><a id="IRS" href="srs7.php"><i class="fas fa-file-lines"></i> Data IRS</a></li>
-                    <li><a id="KHS" href="#"><i class="fas fa-file-lines"></i> Data KHS</a></li>
                     <li><a id="PKL" href="listPKL5.php"><i class="fas fa-building"></i> Data PKL</a></li>
                     <li><a id="Skripsi" href="listskripsi5.php"><i class="fas fa-book-bookmark"></i> Data Skripsi</a></li>
-                    <li><a id="Logout" href="logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
+                    <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
                 </ul>
             </div>
         </div>
         <!-- <div class="main-content1 card"> -->
-        <div class="card1">
+        <div class="card1 grow" style="padding:50px 70px; margin-top: 10vh; margin-bottom:10vh; margin-right:5vw;">
             <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -52,7 +66,7 @@
                             <table class="min-w-full">
                                 <thead class="border-b">
                                     <tr>
-                                        <th scope="col" class="text-center font-medium text-gray-900 px-6 py-4 text-left">
+                                        <th scope="col" class="text-center font-medium text-gray-900 px-6 py-4 text-center">
                                             NO
                                         </th>
                                         <th scope="col" class="text-center font-medium text-gray-900 px-6 py-4 text-left">
@@ -63,9 +77,6 @@
                                         </th>
                                         <th scope="col" class="text-center font-medium text-gray-900 px-6 py-4 text-left">
                                             SEMESTER
-                                        </th>
-                                        <th scope="col" class="text-center font-medium text-gray-900 px-6 py-4 text-center">
-                                            APPROVAL
                                         </th>
                                     </tr>
                                 </thead>

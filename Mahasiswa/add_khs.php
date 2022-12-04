@@ -81,14 +81,20 @@ function upload($nim, $semester)
     <div class="container flex">
         <div class="left sticky top-0">
             <div class="user flex card">
-                <img class="object-contain hover:scale-125 " id="avatar" src="img/olix.png" alt="" />
+                <?php
+                $select = mysqli_query($con, "SELECT * FROM mahasiswa WHERE nim = '$nim'") or die('query failed');
+                if (mysqli_num_rows($select) > 0) {
+                    $fetch = mysqli_fetch_assoc($select);
+                }
+                ?>
+                <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
                 <div class="flex-row ml-5">
                     <p class="username">
-                        Olivia Rodrigo <br>
-                        <span style="font-size: 12px;">24060120130052</span>
+                        <b><?php echo $fetch['nama_mhs']; ?></b><br>
+                        <span style="font-size: 12px;"><?php echo $fetch['NIM']; ?></span>
                     </p>
                     <p class="status">
-                        Mahasiswa Aktif Departemen Informatika Fakultas Sains dan Matematika
+                        Mahasiswa <?php echo $fetch['status_mhs']; ?> Departemen Informatika Fakultas Sains dan Matematika
                     </p>
                 </div>
             </div>

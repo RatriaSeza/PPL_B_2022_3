@@ -6,6 +6,8 @@ $NIM = $_SESSION['username'];
 if (!isset($_SESSION['username'])) {
     header('Location: ../login.php');
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +67,6 @@ if (!isset($_SESSION['username'])) {
                 <?php
                 if (isset($_POST['submit'])) {
                     $nama = $_POST['nama_mhs'];
-                    $NIM = $_POST['NIM'];
                     $angkatan = $_POST['angkatan'];
                     $status_mhs = $_POST['status_mhs'];
                     $jalur_masuk = $_POST['jalur_masuk'];
@@ -76,12 +77,15 @@ if (!isset($_SESSION['username'])) {
                     $email = $_POST['email'];
                     $nohp = $_POST['nohp'];
 
-                    $query("INSERT INTO mahasiswa (nama_mhs, NIM, angkatan, status_mhs, jalur_masuk, jenis_kelamin, alamat, id_provinsi, id_kabupaten, email, nohp) 
-                            VALUES('$nama_mhs', '$NIM', '$angkatan', '$status_mhs', '$jalur_masuk', '$jenis_kelamin', '$alamat', '$provinsi', '$kabupaten', '$email', '$nohp')");
+                    $query = "UPDATE mahasiswa SET nama_mhs='$nama', angkatan='$angkatan', status_mhs='$status_mhs', jalur_masuk='$jalur_masuk',
+                    jenis_kelamin='$jenis_kelamin', alamat='$alamat', id_provinsi='$provinsi', id_kabupaten='$kabupaten', email='$email', nohp='$nohp' 
+                    WHERE NIM='$NIM'";
+
+                    $result = mysqli_query($con, $query);
 
                     if ($result) :
                 ?>
-                        <div class="alert alert-success">Data berhasil disimpan</div>
+                        <div class="text-white text-center text-xl font-semibold shadow-inner rounded p-3 bg-green-500 mb-4">Data berhasil disimpan</div>
                     <?php else : ?>
                         <div class="alert alert-error">Data gagal disimpan <?php echo $con->error ?></div>
                         }
@@ -92,72 +96,27 @@ if (!isset($_SESSION['username'])) {
                 <form method="POST" onsubmit="return submitForm()" name="form" class="grid">
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="nama_mhs">Nama Lengkap</label>
-                        <input name="nama_mhs" id="nama_mhs" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['nama_mhs']; ?>" disabled>
+                        <input name="nama_mhs" id="nama_mhs" type="text" class="appearance-none block w-full bg-gray-200 text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value="<?php echo $fetch['nama_mhs']; ?>" readonly>
                     </div>
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="NIM">NIM</label>
-                        <input name="NIM" id="NIM" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['NIM']; ?>" disabled>
+                        <input name="NIM" id="NIM" type="text" class="appearance-none block w-full bg-gray-200 text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value="<?php echo $fetch['NIM']; ?>" readonly>
                     </div>
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-sm font-bold mb-2" for="angkatan">Angkatan</label>
-                        <input name="angkatan" id="angkatan" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['angkatan']; ?>" disabled>
-                        <!-- <div class="relative">
-                            <select name="angkatan" id="angkatan" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option value="0">Pilih Angkatan</option>
-                                <option value="2016">2016</option>
-                                <option value="2017">2017</option>
-                                <option value="2018">2018</option>
-                                <option value="2019">2019</option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                </svg>
-                            </div>
-                        </div> -->
+                        <input name="angkatan" id="angkatan" type="text" class="appearance-none block w-full bg-gray-200 text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value="<?php echo $fetch['angkatan']; ?>" readonly>
                     </div>
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-sm font-bold mb-2" for="status_mhs">Status</label>
-                        <input name="status_mhs" id="status_mhs" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['status_mhs']; ?>" disabled>
-                        <!-- <div class="relative">
-                            <select name="status_mhs" id="status_mhs" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option selected>Pilih Status</option>
-                                <option value="Aktif">Aktif</option>
-                                <option value="Mangkir">Mangkir</option>
-                                <option value="Cuti">Cuti</option>
-                                <option value="Lulus">Lulus</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                </svg>
-                            </div>
-                        </div> -->
+                        <input name="status_mhs" id="status_mhs" type="text" class="appearance-none block w-full bg-gray-200 text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value="<?php echo $fetch['status_mhs']; ?>" readonly>
                     </div>
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-sm font-bold mb-2" for="jalur_masuk">Jalur Masuk</label>
-                        <input name="jalur_masuk" id="jalur_masuk" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="<?php echo $fetch['jalur_masuk']; ?>" disabled>
-                        <!-- <div class="relative">
-                            <select name="jalur_masuk" id="jalur_masuk" class="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option value="">Pilih Jalur Masuk</option>
-                                <option value="SNMPTN">SNMPTN</option>
-                                <option value="SBMPTN">SBMPTN</option>
-                                <option value="SBUB">SBUB</option>
-                                <option value="Mandiri">Mandiri</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                </svg>
-                            </div>
-                        </div> -->
+                        <input name="jalur_masuk" id="jalur_masuk" type="text" class="appearance-none block w-full bg-gray-200 text-gray-500 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" value="<?php echo $fetch['jalur_masuk']; ?>" readonly>
                     </div>
 
                     <div class="form-group mb-7">
@@ -174,14 +133,16 @@ if (!isset($_SESSION['username'])) {
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="alamat">Alamat</label>
-                        <input name="alamat" id="alamat" type="text-area" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Masukkan Alamat" required>
+                        <input name="alamat" id="alamat" value="<?php echo $fetch['alamat']; ?>" type="text-area" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Masukkan Alamat" required>
                     </div>
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-sm font-bold mb-2" for="provinsi">Provinsi</label>
                         <div class="relative">
                             <select name="provinsi" id="provinsi" class="form-control block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option value="<?php if (isset($provinsi)) {echo $provinsi;}?>">Pilih Provinsi</option>
+                                <option value="<?php if (isset($provinsi)) {
+                                                    echo $provinsi;
+                                                } ?>">Pilih Provinsi</option>
                                 <?php
                                 $result = $con->query("SELECT * FROM provinsi ORDER BY nama");
 
@@ -202,7 +163,9 @@ if (!isset($_SESSION['username'])) {
                         <label class="block tracking-wide text-sm font-bold mb-2" for="kabupaten">Kabupaten/Kota</label>
                         <div class="relative">
                             <select name="kabupaten" id="kabupaten" class="form-control block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-500 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required>
-                                <option value="<?php if (isset($kabupaten)) {echo $kabupaten;}?>">Pilih Kabupaten/Kota</option>
+                                <option value="<?php if (isset($kabupaten)) {
+                                                    echo $kabupaten;
+                                                } ?>">Pilih Kabupaten/Kota</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -214,16 +177,16 @@ if (!isset($_SESSION['username'])) {
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-                        <input name="email" id="email" type="email" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Masukkan Email" required>
+                        <input name="email" id="email" value="<?php echo $fetch['email']; ?>" type="email" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Masukkan Email" required>
                     </div>
 
                     <div class="form-group mb-7">
                         <label class="block tracking-wide text-gray-700 text-sm font-bold mb-2" for="nohp">No Handphone</label>
-                        <input name="nohp" id="nohp" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Masukkan No Handphone" required>
+                        <input name="nohp" id="nohp" value="<?php echo $fetch['nohp']; ?>" type="text" class="appearance-none block w-full bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Masukkan No Handphone" required>
                     </div>
 
                     <div class="justify-self-end">
-                        <button class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" type="submit">Save</button>
+                        <button class="bg-violet-500 hover:bg-violet-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" name="submit" type="submit">Save</button>
                     </div>
                 </form>
             </div>

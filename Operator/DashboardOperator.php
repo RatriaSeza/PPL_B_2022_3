@@ -1,6 +1,13 @@
 <?php
 require_once("../db/db_login2.php");
 require_once("BEDashboardOP.php");
+
+session_start();
+$user = $_SESSION['username'];
+
+if (!isset($_SESSION['username'])) {
+  header('Location: ../login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,11 +31,16 @@ require_once("BEDashboardOP.php");
   <div class="container nt flex">
     <div class="left sticky top-0">
       <div class="user flex card">
-        <img class="object-contain hover:scale-125 " id="avatar" src="img/olix.png" alt="" />
+        <?php
+        $select = mysqli_query($db, "SELECT * FROM user WHERE username = '$user'") or die('query failed');
+        if (mysqli_num_rows($select) > 0) {
+          $fetch = mysqli_fetch_assoc($select);
+        }
+        ?>
+        <img class="object-contain " id="avatar" src="../img/olix.png" alt="" />
         <div class="flex-row ml-5">
           <p class="username">
-            Olivia Rodrigo <br>
-            <!-- <span style="font-size: 12px;">24060120130052</span> -->
+            <b><?php echo $fetch['username']; ?></b><br>
           </p>
           <p class="status">
             Operator <br> Departemen Informatika <br> Fakultas Sains dan Matematika
@@ -37,12 +49,9 @@ require_once("BEDashboardOP.php");
       </div>
       <div class="sidenav card">
         <ul id="navlist" class="divide-y divide-gray-500 grid">
-          <li><a id="Dashboard" href="DashboardMahasiswa.php"><i class="fas fa-house"></i> Dashboard</a></li>
+          <li><a id="Dashboard" href="DashboardOperator.php"><i class="fas fa-house"></i> Dashboard</a></li>
           <li><a id="GenAkun" href="GenerateAkunMHS.php"><i class="fas fa-file-lines"></i> Generate Akun</a></li>
-          <li><a id="DataMhs" href="#"><i class="fas fa-file-lines"></i> Data Mahasiswa</a></li>
-          <li><a id="DataPKL" href="#"><i class="fas fa-building"></i> Data PKL Mahasiswa</a></li>
-          <li><a id="Skripsi" href="listskripsi5.php"><i class="fas fa-book-bookmark"></i> Data Skripsi Mahasiswa</a></li>
-          <li><a id="Logout" href="logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
+          <li><a id="Logout" href="../logout.php"><i class="fas fa-right-from-bracket"></i> Keluar</a></li>
         </ul>
       </div>
     </div>
