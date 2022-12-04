@@ -10,11 +10,28 @@ if (!isset($_SESSION['username'])) {
 $nim = $_SESSION['username'];
 
 if (isset($_POST['submit'])) {
-    $status = ($_POST['status']);
-    $nilai = ($_POST['nilai']);
-    $scanPKL = ($_POST['scanPKL']);
+    $status = htmlspecialchars($_POST['status']);
+    $nilai = htmlspecialchars($_POST['nilai']);
+    $scanPKL = upload($nim);
+    
     $query = "INSERT INTO pkl (nim_mhs, status_pkl, nilai_pkl, ba_pkl) VALUES ('$nim', '$status', '$nilai', '$scanPKL')";
     $query_run = mysqli_query($con, $query);
+    
+    if (!$query_run) {
+        die("Could not query the database");
+    } else {
+        mysqli_close($con);
+    }
+
+function upload($nim)
+{
+    $fileName = $_FILES['scanPKL']['name'];
+    $fileTmp = $_FILES['scanPKL']['tmp_name'];
+
+    move_uploaded_file($fileTmp, 'file_pkl/' . $nim . '_' . $fileName);
+
+    return $fileName;
+
 }
 ?>
 
@@ -159,7 +176,11 @@ if (isset($_POST['submit'])) {
                 return false;
             }
         }
-
+        
+        function displayFlex() {
+            document.getElementById('ferror').style.display = "flex";
+        }
+        
         const formUp = document.querySelector(".upload-file"),
             fileInput = document.querySelector(".file-input")
 
